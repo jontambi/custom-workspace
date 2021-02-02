@@ -1,8 +1,36 @@
 execute pathogen#infect()
+
+" show color display
+" if not, specify [ syntax off ]
 syntax on
 filetype plugin indent on
 
-colo darkblue
+colorscheme darkblue
+
+set tabstop=2
+
+" enable auto indent
+" if not, specify [ noautoindent ]
+set autoindent
+set expandtab
+set softtabstop=2
+set cursorline
+
+" specify encoding
+set encoding=utf-8
+
+" specify file formats
+set fileformats=unix,dos
+
+" number of search histories
+set history=50
+
+" highlights matched words
+" if not, specify [ set nohlsearch ]
+set hlsearch
+
+" change colors for comments if it's set [ syntax on ]
+highlight Comment ctermfg=LightCyan
 
 " Configuration vim Airline
 set laststatus=2
