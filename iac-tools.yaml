@@ -1,0 +1,33 @@
+- name: Config IaC tools
+  hosts: localhost
+  gather_facts: yes
+  become: no
+  
+
+  tasks:
+#    - name: Install terraform latest
+#      get_url:
+#        url: "{{ latest_terraform }}"
+#        dest: /tmp/
+#        mode: 0755
+#      become: yes
+
+    - name: Install terraform latest "{{ latest_terraform  }}"
+      unarchive:
+        src: "{{ latest_terraform }}"
+        dest: /usr/bin
+        remote_src: True
+      become: yes
+
+    - name: Test Terraform version
+      command: terraform version
+      
+    - name: Install packer latest "{{ latest_packer }}"
+      unarchive:
+        src: "{{ latest_packer }}"
+        dest: /usr/bin
+        remote_src: True
+      become: yes
+
+    - name: Test Packer version
+      command: packer version
