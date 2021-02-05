@@ -12,22 +12,49 @@
 #        mode: 0755
 #      become: yes
 
-    - name: Install terraform latest "{{ latest_terraform  }}"
-      unarchive:
-        src: "{{ latest_terraform }}"
-        dest: /usr/bin
-        remote_src: True
-      become: yes
+#    - name: Install terraform latest "{{ latest_terraform  }}"
+#      unarchive:
+#        src: "{{ latest_terraform }}"
+#        dest: /usr/bin
+#        remote_src: True
+#      become: yes
 
     - name: Test Terraform version
       command: terraform version
       
-    - name: Install packer latest "{{ latest_packer }}"
-      unarchive:
-        src: "{{ latest_packer }}"
-        dest: /usr/bin
-        remote_src: True
-      become: yes
+#    - name: Install packer latest "{{ latest_packer }}"
+#      unarchive:
+#        src: "{{ latest_packer }}"
+#        dest: /usr/bin
+#        remote_src: True
+#      become: yes
 
     - name: Test Packer version
       command: packer version
+
+#   - name: Download AWS cli
+#      unarchive:
+#        src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+#        dest: /tmp
+#        remote_src: True
+
+#    - name: Install AWS cli
+#      command: /tmp/aws/install
+#      become: yes
+
+    - name: Install Go
+      unarchive:
+        src: https://golang.org/dl/go1.15.7.linux-amd64.tar.gz
+        dest: /usr/local
+        remote_src: True
+      become: yes
+
+    - name: Set Go Path
+      copy:
+        dest: /etc/profile.d/go.sh
+        content: 'PATH=$PATH:/usr/local/go/bin'
+      become: yes
+
+    - name: Check Go version
+      command: go version
+
